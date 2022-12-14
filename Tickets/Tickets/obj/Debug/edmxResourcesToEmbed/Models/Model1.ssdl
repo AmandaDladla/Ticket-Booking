@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Ticket_AmandaDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Admin_Id" />
+    </Key>
+    <Property Name="Admin_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Contact" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ticket">
+    <Key>
+      <PropertyRef Name="Ticket_Id" />
+    </Key>
+    <Property Name="Ticket_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Request_Date" Type="date" Nullable="false" />
+    <Property Name="Status_Id" Type="int" Nullable="false" />
+    <Property Name="Msg_Id" Type="int" Nullable="false" />
+    <Property Name="Descript_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ticket_Description">
+    <Key>
+      <PropertyRef Name="Descript_Id" />
+    </Key>
+    <Property Name="Descript_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ticket_Message">
+    <Key>
+      <PropertyRef Name="Msg_Id" />
+    </Key>
+    <Property Name="Msg_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="Admin_Id" Type="int" Nullable="false" />
+    <Property Name="Message" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ticket_Status">
+    <Key>
+      <PropertyRef Name="Status_Id" />
+    </Key>
+    <Property Name="Status_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="User_Id" />
+    </Key>
+    <Property Name="User_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fullname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Ticket_Message_Admin">
+    <End Role="Admin" Type="Self.Admin" Multiplicity="1" />
+    <End Role="Ticket_Message" Type="Self.Ticket_Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="Admin_Id" />
+      </Principal>
+      <Dependent Role="Ticket_Message">
+        <PropertyRef Name="Admin_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ticket_Message_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Ticket_Message" Type="Self.Ticket_Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User_Id" />
+      </Principal>
+      <Dependent Role="Ticket_Message">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ticket_Ticket_Description">
+    <End Role="Ticket_Description" Type="Self.Ticket_Description" Multiplicity="1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ticket_Description">
+        <PropertyRef Name="Descript_Id" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="Descript_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ticket_Ticket_Message">
+    <End Role="Ticket_Message" Type="Self.Ticket_Message" Multiplicity="1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ticket_Message">
+        <PropertyRef Name="Msg_Id" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="Msg_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ticket_Ticket_Status">
+    <End Role="Ticket_Status" Type="Self.Ticket_Status" Multiplicity="1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ticket_Status">
+        <PropertyRef Name="Status_Id" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="Status_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Ticket_AmandaDModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ticket_Description" EntityType="Self.Ticket_Description" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ticket_Message" EntityType="Self.Ticket_Message" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ticket_Status" EntityType="Self.Ticket_Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Ticket_Message_Admin" Association="Self.FK_Ticket_Message_Admin">
+      <End Role="Admin" EntitySet="Admin" />
+      <End Role="Ticket_Message" EntitySet="Ticket_Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ticket_Message_User" Association="Self.FK_Ticket_Message_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Ticket_Message" EntitySet="Ticket_Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ticket_Ticket_Description" Association="Self.FK_Ticket_Ticket_Description">
+      <End Role="Ticket_Description" EntitySet="Ticket_Description" />
+      <End Role="Ticket" EntitySet="Ticket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ticket_Ticket_Message" Association="Self.FK_Ticket_Ticket_Message">
+      <End Role="Ticket_Message" EntitySet="Ticket_Message" />
+      <End Role="Ticket" EntitySet="Ticket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ticket_Ticket_Status" Association="Self.FK_Ticket_Ticket_Status">
+      <End Role="Ticket_Status" EntitySet="Ticket_Status" />
+      <End Role="Ticket" EntitySet="Ticket" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

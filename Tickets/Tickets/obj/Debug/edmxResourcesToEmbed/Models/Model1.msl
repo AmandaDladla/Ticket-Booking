@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Ticket_AmandaDModelStoreContainer" CdmEntityContainer="Ticket_AmandaDEntities">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="Ticket_AmandaDModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="Admin_Id" ColumnName="Admin_Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tickets">
+      <EntityTypeMapping TypeName="Ticket_AmandaDModel.Ticket">
+        <MappingFragment StoreEntitySet="Ticket">
+          <ScalarProperty Name="Ticket_Id" ColumnName="Ticket_Id" />
+          <ScalarProperty Name="Request_Date" ColumnName="Request_Date" />
+          <ScalarProperty Name="Status_Id" ColumnName="Status_Id" />
+          <ScalarProperty Name="Msg_Id" ColumnName="Msg_Id" />
+          <ScalarProperty Name="Descript_Id" ColumnName="Descript_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ticket_Description">
+      <EntityTypeMapping TypeName="Ticket_AmandaDModel.Ticket_Description">
+        <MappingFragment StoreEntitySet="Ticket_Description">
+          <ScalarProperty Name="Descript_Id" ColumnName="Descript_Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ticket_Message">
+      <EntityTypeMapping TypeName="Ticket_AmandaDModel.Ticket_Message">
+        <MappingFragment StoreEntitySet="Ticket_Message">
+          <ScalarProperty Name="Msg_Id" ColumnName="Msg_Id" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="Admin_Id" ColumnName="Admin_Id" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ticket_Status">
+      <EntityTypeMapping TypeName="Ticket_AmandaDModel.Ticket_Status">
+        <MappingFragment StoreEntitySet="Ticket_Status">
+          <ScalarProperty Name="Status_Id" ColumnName="Status_Id" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="Ticket_AmandaDModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
